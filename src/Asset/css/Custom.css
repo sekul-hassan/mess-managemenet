@@ -1,15 +1,37 @@
-
 .navbar {
     height: 70px;
-    background-color: rgba(220,220,120,0.3) !important;
+    background-color: rgba(220,220,120,0.1) !important;
     border: none;
-    z-index: 100;
     transition: background-color 1s ease 0s;
 }
+.overlay{
+    background-size: cover;
+    margin-top: -70px;
+    width: 100%;
+    position: absolute;
+    min-height: 510px;
+    background: rgba(10, 10, 110, 0.1) center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 .background{
     background-size: cover;
     margin-top: -70px;
     width: 100%;
-    min-height: 580px;
+    min-height: 510px;
     background: url("../Images/backround.jpg") no-repeat fixed center;
+}
+.topBar{
+    margin-top: 14rem;
+    color: white;
+    font-size: 18px;
+    font-family: Roboto sans-serif;
+    font-weight: 800;
+}
+.form{
+   padding: 0.8rem 10rem;
+    text-align: left;
 }
