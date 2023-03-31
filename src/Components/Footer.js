@@ -5,7 +5,7 @@ function Footer(props) {
 
     return (
         <Fragment>
-            <Container fluid="true" className="mt-4">
+            <Container fluid="true" className="mt-2">
                 <Card>
                     <Card.Body><span>© 2023 SEKUL HASSAN. All rights reserved.</span></Card.Body>
                 </Card>
