@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 
-function LoginModal({loginOpen,close1}) {
+function LoginModal({loginOpen,close1,login}) {
     return (
         <Fragment>
             <Container className="modal">
@@ -18,7 +18,7 @@ function LoginModal({loginOpen,close1}) {
                                     <Form.Label>Enter Password</Form.Label>
                                     <Form.Control required type="password" placeholder="Enter password"/>
                                 </Form.Group>
-                                <Button className="btnHover" variant="primary" type="submit">Submit</Button>
+                                <Button className="btnHover" variant="primary" type="submit" onClick={login}>Submit</Button>
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>

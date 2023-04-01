@@ -12,9 +12,18 @@ import {useState} from "react";
 import AdditionMenu from "./Components/AdditionMenu";
 import LoginModal from "./Components/LoginModal";
 import AddModal from "./Components/AddModal";
+import AddMember from "./Components/AddMember";
+import Match from "./Pages/Match";
 
 
 function App(){
+    const [isLogin,setIsLogin] = useState(false);
+    const login = ()=>{
+        setIsLogin(true);
+    }
+    const logOut = ()=>{
+        setIsLogin(false);
+    }
     const [addOpen,setAddOpen] = useState(false);
     const open = ()=>{
         setAddOpen(true);
@@ -29,18 +38,28 @@ function App(){
     const close1 = ()=>{
         setLoginOpen(false);
     }
+    const [addMember,setAddMember] = useState(false);
+    const openAddMember = ()=>{
+        setAddMember(true);
+    }
+    const closeAddMember = ()=>{
+        setAddMember(false);
+    }
+
     return (
     <BrowserRouter>
         <div className="App">
-           <Menu open = {open} open1={open1}/>
+            {isLogin ? <AdditionMenu logOut={logOut} openAddMember={openAddMember} />:<Menu open = {open} open1={open1}/>}
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="about" element={<About/>}/>
                 <Route path="border" element={<Border/>}/>
                 <Route path="contact" element={<Contact/>}/>
+                <Route path="match" element={<Match/>}/>
             </Routes>
             <Footer/>
-            <LoginModal loginOpen={loginOpen} close1={close1}/>
+            <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
+            <AddMember addMember={addMember} closeAddMember={closeAddMember} />
             <AddModal addOpen={addOpen} close={close}/>
         </div>
     </BrowserRouter>

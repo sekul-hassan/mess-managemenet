@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-function AdditionMenu({modalSet,setModalLogin}) {
+function AdditionMenu({logOut,openAddMember}) {
     return (
         <Fragment>
             <Navbar sticky='top' className="navbar" collapseOnSelect expand="sm" bg="dark" variant="dark">
@@ -15,10 +15,9 @@ function AdditionMenu({modalSet,setModalLogin}) {
                             <Link className="link" to="/">Home</Link>
                             <Link className="link" to="about">About</Link>
                             <Link className="link" to="contact">Contact</Link>
-                            <Link className="link" onClick={modalSet}>Add</Link>
-                            <Link className="link" onClick={setModalLogin}>Login</Link>
-                            <Link className="link">AddMember</Link>
-                            <Link className="link">LogOut</Link>
+                            <Link className="link" to="match">Match</Link>
+                            <Link className="link" onClick={openAddMember}>AddMember</Link>
+                            <Link className="link" onClick={logOut}>LogOut</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
