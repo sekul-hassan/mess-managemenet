@@ -22,7 +22,7 @@ function ContactForm(props) {
                             <Form.Control as="textarea" placeholder="Leave a comment here" />
                         </FloatingLabel>
                         </Form.Group>
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="primary" type="submit" className="btnHover">Submit</Button>
                 </Form>
             </Container>
         </Fragment>

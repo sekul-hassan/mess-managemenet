@@ -10,7 +10,7 @@ function HomeTopBar(props) {
                         <div className="topBar">
                             <h1>Hi i am sekul hassan</h1>
                             <h2>Mobile && Web app developer</h2>
-                            <Button>Find Me</Button>
+                            <Button className="btnHover">Find Me</Button>
                         </div>
                     </Row>
                 </div>

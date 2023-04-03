@@ -1,11 +1,39 @@
 .navbar {
     min-height: 50px;
-    background-color: rgba(222,222,222,0.1) !important;
+    background-color: rgba(0,0,0,0.5) !important;
     border: none;
     transition: background-color 1s ease 0s;
 }
+.navbarScroll{
+    min-height: 50px;
+    background-color: rgba(300,300,300,1) !important;
+    border: none;
+    transition: background-color 0.5s ease 0s;
+}
+.navBrand{
+    color: #ffeeff !important;
+    font-size: 20px;
+    font-weight: 500 !important;
+    font-family: "Roboto Light",sans-serif;
+    margin: 0 5px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+.brandLink{
+    text-decoration: none;
+    font-size: 20px !important;
+}
+.navBrandScroll{
+    color: #000000 !important;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Roboto Light",sans-serif;
+    margin: 0 5px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
 .link{
-    color: #ffeeff;
+    color: #ffeeff !important;
     font-size: 16px;
     font-weight: 400;
     font-family: "Roboto Light",sans-serif;
@@ -14,8 +42,32 @@
     cursor: pointer;
 
 }
+.linkScroll{
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Roboto Light",sans-serif;
+    margin: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.navBrand:hover{
+    color: deepskyblue !important;
+    transition: 0.5s;
+    background-color: rgba(0,0,0,0);
+}
+.navBrandScroll:hover{
+    color: deepskyblue !important;
+    transition: 0.5s;
+    background-color: rgba(0,0,0,0);
+}
 .link:hover{
-    color: skyblue;
+    color: deepskyblue !important;
+    transition: 0.5s;
+    background-color: rgba(0,0,0,0);
+}
+.linkScroll:hover{
+    color: deepskyblue !important;
     transition: 0.5s;
     background-color: rgba(0,0,0,0);
 }
@@ -190,7 +242,7 @@
 }
 .cardHeader{
     font-size: 24px;
-    font-family: Roboto, Serif;
+    font-family: "Roboto",serif;
     margin-top: 10px;
     font-weight: 700;
     color: rgba(0,0,0,0.8);
@@ -202,4 +254,48 @@
 .btnHover:hover{
     color: black;
     background-color: #ffeeff;
+}
+.btnToLink{
+    text-decoration: none;
+    border: 1px solid chartreuse;
+    padding: 8px;
+    border-radius: 10%;
+    color: white;
+    background-color: #61dafb;
+}
+.coverPic{
+    background-image: url("../Images/coverPic.JPG");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 350px;
+    margin-top: -60px;
+}
+.coverPicOverLay{
+    position: absolute;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    min-height: 410px;
+    margin-top: -60px;
+}
+.profile{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 13rem;
+    right: 1rem;
+    cursor: pointer;
+    border: 2px solid darkgreen;
+}
+.profile:hover{
+    transition: 0.3s;
+    border: 2px solid white;
+}
+.imgUpload{
+    position: absolute;
+    margin-top: 20rem;
 }

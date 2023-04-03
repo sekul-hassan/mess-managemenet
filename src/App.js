@@ -2,7 +2,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/Asset/css/Custom.css'
 import Menu from "./Components/Menu";
-import Border from "./Pages/Border";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Footer from "./Components/Footer";
 import About from "./Pages/About";
@@ -14,6 +13,9 @@ import LoginModal from "./Components/LoginModal";
 import AddModal from "./Components/AddModal";
 import AddMember from "./Components/AddMember";
 import Match from "./Pages/Match";
+import AddExtra from "./Components/Context/AddExtra";
+import AddExtraContext from "./Components/Context/AddExtra";
+import Profile from "./Pages/Profile";
 
 
 function App(){
@@ -46,22 +48,32 @@ function App(){
         setAddMember(false);
     }
 
+    const [extra,setExtra] = useState(false);
+    const openExtra = ()=>{
+        setExtra(true);
+    }
+    const closeExtra = ()=>{
+        setExtra(false);
+    }
+
     return (
     <BrowserRouter>
-        <div className="App">
-            {isLogin ? <AdditionMenu logOut={logOut} openAddMember={openAddMember} />:<Menu open = {open} open1={open1}/>}
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="about" element={<About/>}/>
-                <Route path="border" element={<Border/>}/>
-                <Route path="contact" element={<Contact/>}/>
-                <Route path="match" element={<Match/>}/>
-            </Routes>
-            <Footer/>
-            <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
-            <AddMember addMember={addMember} closeAddMember={closeAddMember} />
-            <AddModal addOpen={addOpen} close={close}/>
-        </div>
+       <AddExtraContext.Provider value={{extra,openExtra,closeExtra}}>
+           <div className="App">
+               {isLogin ? <AdditionMenu logOut={logOut} openAddMember={openAddMember} />:<Menu open = {open} open1={open1}/>}
+               <Routes>
+                   <Route path="/" element={<Home/>}/>
+                   <Route path="about" element={<About/>}/>
+                   <Route path="contact" element={<Contact/>}/>
+                   <Route path="match" element={<Match/>}/>
+                   <Route path="profile" element={<Profile/>}/>
+               </Routes>
+               <Footer/>
+               <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
+               <AddMember addMember={addMember} closeAddMember={closeAddMember} />
+               <AddModal addOpen={addOpen} close={close}/>
+           </div>
+       </AddExtraContext.Provider>
     </BrowserRouter>
   );
 }
