@@ -297,5 +297,23 @@
 }
 .imgUpload{
     position: absolute;
-    margin-top: 20rem;
+    margin-top: 21rem;
+    text-align: right;
+    justify-content: start;
+}
+.uploadBtn1{
+    margin:0;
+    padding: 3px 8px;
+    background-color: rgba(0,0,0,0);
+}
+.uploadBtn2{
+    padding: 3px 18px;
+    margin-top: 5px;
+    margin-right: 0;
+    background-color: rgba(0,0,0,0);
+}
+.uploadBtn1:hover,.uploadBtn2:hover{
+    background-color: #ffeeff;
+    color: black;
+    transition: 0.5s;
 }

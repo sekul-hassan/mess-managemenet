@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {Container, Row} from "react-bootstrap";
+import {Fragment} from 'react';
+import {Button, Container, Row} from "react-bootstrap";
 import profile from "../Asset/Images/coverPic.JPG";
 
 function ProfileTop(props) {
@@ -12,9 +12,8 @@ function ProfileTop(props) {
                            <img className="profile" src={profile}/>
                            <Row>
                                <div className="imgUpload">
-                                   <label htmlFor="">Select Cover Photo</label>
-                                   <input type="image"/><br/>
-                                   <input type="image" placeholder="Select Profile Photo"/>
+                                   <input type="file" id="cover-photo" className="file-upload1"/><Button className="uploadBtn1">Cover Pic</Button><br/>
+                                   <input type="file" id="profile-pic" className="file-upload2"/><Button className="uploadBtn2">Profile</Button>
                                </div>
                            </Row>
                        </div>
