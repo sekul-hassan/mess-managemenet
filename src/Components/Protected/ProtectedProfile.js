@@ -1,7 +1,7 @@
 import {Navigate} from "react-router-dom";
 
-const ProtectedProfile = ({Profile,isLogin})=>{
-    return isLogin ? <Profile/>:<Navigate to="/"/>
+const ProtectedProfile = ({Profile})=>{
+    return localStorage.getItem('login') ? <Profile/>:<Navigate to="/"/>
 }
 
 export default ProtectedProfile;

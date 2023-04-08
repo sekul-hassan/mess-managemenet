@@ -1,7 +1,21 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Button, Container, Row, Table} from "react-bootstrap";
+import axios from "axios";
 
 function BorderList(props) {
+    const [user,setUser] = useState([]);
+
+    useEffect(()=>{
+        loadUser();
+    },[]);
+
+    const loadUser = ()=>{
+        axios.get("http://localhost:8080/allMember").then((res)=>{
+            const data = res.data;
+            setUser(data);
+            console.log(user);
+        });
+    }
     return (
         <Fragment>
             <Container fluid={true} className="mt-0">
@@ -11,6 +25,7 @@ function BorderList(props) {
                         <tr>
                             <th>SI</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Phone-NO</th>
                             <th>Add-TK</th>
                             <th>Back-TK</th>
@@ -19,58 +34,26 @@ function BorderList(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>sekul hassan</td>
-                            <td>01824xxxxxx</td>
-                            <td>1200</td>
-                            <td>120</td>
-                            <td>55</td>
-                            <td>
-                                <Button className="pmbtn">+</Button>
-                                <Button className="pmbtn">-</Button>
-                                <Button className="modify">Modify</Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>sekul hassan</td>
-                            <td>01824xxxxxx</td>
-                            <td>1200</td>
-                            <td>120</td>
-                            <td>55</td>
-                            <td>
-                                <Button className="pmbtn">+</Button>
-                                <Button className="pmbtn">-</Button>
-                                <Button className="modify">Modify</Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>sekul hassan</td>
-                            <td>01824xxxxxx</td>
-                            <td>1200</td>
-                            <td>120</td>
-                            <td>55</td>
-                            <td>
-                                <Button className="pmbtn">+</Button>
-                                <Button className="pmbtn">-</Button>
-                                <Button className="modify">Modify</Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>sekul hassan</td>
-                            <td>01824xxxxxx</td>
-                            <td>1200</td>
-                            <td>120</td>
-                            <td>55</td>
-                            <td>
-                                <Button className="pmbtn">+</Button>
-                                <Button className="pmbtn">-</Button>
-                                <Button className="modify">Modify</Button>
-                            </td>
-                        </tr>
+                        {
+                            user.map((us,id)=>
+
+                                <tr key={id}>
+                                    <td>{id+1}</td>
+                                    <td>{us.name}</td>
+                                    <td>{us.email}</td>
+                                    <td>{us.phone}</td>
+                                    <td>{us.addTk}</td>
+                                    <td>{us.backTk}</td>
+                                    <td>{us.totalMeal}</td>
+                                    <td>
+                                        <Button className="pmbtn">+</Button>
+                                        <Button className="pmbtn">-</Button>
+                                        <Button className="modify">Modify</Button>
+                                    </td>
+                                </tr>
+
+                            )
+                        }
                         </tbody>
                     </Table>
                 </Row>

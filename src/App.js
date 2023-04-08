@@ -22,11 +22,16 @@ import ProtectedProfile from "./Components/Protected/ProtectedProfile";
 
 function App(){
     const [isLogin,setIsLogin] = useState(false);
+    const [isLogout,setIsLogout] = useState(true);
     const login = ()=>{
+        localStorage.setItem('login','true');
         setIsLogin(true);
+        setIsLogout(!isLogout);
     }
     const logOut = ()=>{
-        setIsLogin(false);
+       localStorage.clear();
+       setIsLogin(false);
+       setIsLogout(false);
     }
     const [addOpen,setAddOpen] = useState(false);
     const open = ()=>{
@@ -62,7 +67,7 @@ function App(){
     <BrowserRouter>
        <AddExtraContext.Provider value={{extra,openExtra,closeExtra}}>
            <div className="App">
-               {isLogin ? <AdditionMenu logOut={logOut} openAddMember={openAddMember} />:<Menu open = {open} open1={open1}/>}
+               {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
               <React.Suspense>
                   <Routes>
                       <Route path="/" element={<Home/>}/>
