@@ -1,21 +1,25 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import {Button, Container, Row, Table} from "react-bootstrap";
 import axios from "axios";
+import AddExtraContext from "./Context/AddExtra";
+import ModifyContext from "./Context/ModifyContext";
 
 function BorderList(props) {
     const [user,setUser] = useState([]);
+    const {loadAgain} = useContext(AddExtraContext);
+    const {handleModify} = useContext(ModifyContext);
 
     useEffect(()=>{
         loadUser();
-    },[]);
+    },[loadAgain]);
 
     const loadUser = ()=>{
         axios.get("http://localhost:8080/allMember").then((res)=>{
             const data = res.data;
             setUser(data);
-            console.log(user);
         });
     }
+
     return (
         <Fragment>
             <Container fluid={true} className="mt-0">
@@ -48,7 +52,7 @@ function BorderList(props) {
                                     <td>
                                         <Button className="pmbtn">+</Button>
                                         <Button className="pmbtn">-</Button>
-                                        <Button className="modify">Modify</Button>
+                                        <Button className="modify" id={us.id} onClick={handleModify}>Modify</Button>
                                     </td>
                                 </tr>
 

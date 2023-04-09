@@ -1,11 +1,13 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useContext, useState} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AddExtraContext from "./Context/AddExtra";
 
 function AddMember({addMember,closeAddMember}) {
-
+    const {handleLoadAgain} = useContext(AddExtraContext);
     const navigate = useNavigate();
+    const [nullValue,setNullValue] = useState("");
     const [user,setUser] = useState({
         name:"",
         email:"",
@@ -17,20 +19,26 @@ function AddMember({addMember,closeAddMember}) {
         const value = e.target.value;
         setUser({...user,[name]:value});
     }
-
     const handleSummit =  (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:8080/addMember", user)
-            .then((response) => {
-                console.log(response.data);
-                if(response.data){
-                    closeAddMember();
-
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+       if(user.name!=="" && user.email!=="" && user.phone!==""){
+           axios.post("http://localhost:8080/addMember", user)
+               .then((response) => {
+                   if(response.data){
+                       setUser({name: "", email: "", phone: ""});
+                       setNullValue("");
+                       closeAddMember();
+                       navigate("match");
+                       handleLoadAgain();
+                   }
+               })
+               .catch((error) => {
+                   console.error(error);
+               });
+       }
+       else{
+           setNullValue("All Fields Are Required");
+       }
     }
 
 
@@ -39,6 +47,7 @@ function AddMember({addMember,closeAddMember}) {
             <Container className="modal">
                 <Row>
                     <Modal show={addMember}>
+                        <Modal.Header>{nullValue}</Modal.Header>
                         <Modal.Header>Member information</Modal.Header>
                         <Modal.Body>
                             <Form>

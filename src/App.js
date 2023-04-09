@@ -62,10 +62,14 @@ function App(){
     const closeExtra = ()=>{
         setExtra(false);
     }
+    const [loadAgain,setLoadAgain] = useState(false);
+    const handleLoadAgain = ()=>{
+        setLoadAgain(!loadAgain);
+    }
 
     return (
     <BrowserRouter>
-       <AddExtraContext.Provider value={{extra,openExtra,closeExtra}}>
+       <AddExtraContext.Provider value={{extra,openExtra,closeExtra,handleLoadAgain,loadAgain}}>
            <div className="App">
                {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
               <React.Suspense>
