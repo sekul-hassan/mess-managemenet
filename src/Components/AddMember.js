@@ -41,7 +41,6 @@ function AddMember({addMember,closeAddMember}) {
        }
     }
 
-
     return (
         <Fragment>
             <Container className="modal">

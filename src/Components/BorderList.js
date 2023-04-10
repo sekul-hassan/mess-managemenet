@@ -8,7 +8,6 @@ function BorderList(props) {
     const [user,setUser] = useState([]);
     const {loadAgain} = useContext(AddExtraContext);
     const {handleModify} = useContext(ModifyContext);
-
     useEffect(()=>{
         loadUser();
     },[loadAgain]);
@@ -18,6 +17,25 @@ function BorderList(props) {
             const data = res.data;
             setUser(data);
         });
+    }
+
+    const updateDone = async (id)=>{
+        await axios.put(`http://localhost:8080/oneMember/${user[id].id}`,user[id]);
+    }
+    const mealUpdate = (e)=>{
+        e.preventDefault();
+        const name = e.target.name;
+        const id = e.target.id;
+        if(name==="inc"){
+            user[id].totalMeal += 1;
+        }
+        else{
+            user[id].totalMeal -= 1;
+        }
+        if(user[id].totalMeal<=0){
+            user[id].totalMeal = 0;
+        }
+        updateDone(id).then((res)=>{loadUser()});
     }
 
     return (
@@ -40,7 +58,6 @@ function BorderList(props) {
                         <tbody>
                         {
                             user.map((us,id)=>
-
                                 <tr key={id}>
                                     <td>{id+1}</td>
                                     <td>{us.name}</td>
@@ -50,8 +67,8 @@ function BorderList(props) {
                                     <td>{us.backTk}</td>
                                     <td>{us.totalMeal}</td>
                                     <td>
-                                        <Button className="pmbtn">+</Button>
-                                        <Button className="pmbtn">-</Button>
+                                        <Button className="pmbtn" name="inc" onClick={mealUpdate} id={id}>+</Button>
+                                        <Button className="pmbtn" name="dec" onClick={mealUpdate} id={id}>-</Button>
                                         <Button className="modify" id={us.id} onClick={handleModify}>Modify</Button>
                                     </td>
                                 </tr>
