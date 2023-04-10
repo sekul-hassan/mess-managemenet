@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 
 function AddModal({addOpen,close}) {
@@ -14,6 +14,10 @@ function AddModal({addOpen,close}) {
                               <Form.Group className="mb-3">
                                   <Form.Label>Enter Mess Name</Form.Label>
                                   <Form.Control required  type="text" placeholder="Enter Mess Name"/>
+                              </Form.Group>
+                                <Form.Group className="mb-3">
+                                  <Form.Label>Enter Mess Id</Form.Label>
+                                  <Form.Control required  type="text" placeholder="Enter Mess Id"/>
                               </Form.Group>
                                 <Form.Group className="mb-3">
                                   <Form.Label>EmailAddress</Form.Label>
