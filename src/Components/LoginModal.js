@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-function LoginModal({loginOpen,close1,login}) {
+function LoginModal({loginOpen,close1,login,setData}) {
 
     return (
         <Fragment>
@@ -13,12 +13,12 @@ function LoginModal({loginOpen,close1,login}) {
                         <Modal.Body>
                             <Form>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Email Address</Form.Label>
-                                    <Form.Control required  type="email" placeholder="Enter E-mail"/>
+                                    <Form.Label>Mess Id</Form.Label>
+                                    <Form.Control name="messId" required onChange={setData} type="text" placeholder="Enter Mess Id"/>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Enter Password</Form.Label>
-                                    <Form.Control required type="password" placeholder="Enter password"/>
+                                    <Form.Control name="messPassword" required onChange={setData} type="password" placeholder="Enter password"/>
                                 </Form.Group>
                                 <Link className="btnToLink btnHover" variant="primary" type="submit" onClick={login} to="match">Submit</Link>
                             </Form>

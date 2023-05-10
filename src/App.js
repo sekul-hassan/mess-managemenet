@@ -18,15 +18,42 @@ import AddExtraContext from "./Components/Context/AddExtra";
 import Profile from "./Pages/Profile";
 import ProtectMatch from "./Components/Protected/ProtectMatch";
 import ProtectedProfile from "./Components/Protected/ProtectedProfile";
+import axios from "axios";
 
 
 function App(){
+    const [loginOpen,setLoginOpen] = useState(false);
     const [isLogin,setIsLogin] = useState(false);
     const [isLogout,setIsLogout] = useState(true);
-    const login = ()=>{
-        localStorage.setItem('login','true');
-        setIsLogin(true);
-        setIsLogout(!isLogout);
+    const [loginData,setLoginData] = useState({
+        messId:'',
+        messPassword:''
+    })
+    const setData = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        setLoginData(loginData => ({
+            ...loginData,
+            [name]: value
+        }));
+    };
+
+    const login = (e)=>{
+        e.preventDefault();
+        axios.get(`http://localhost:8080/login`,{params:loginData}).then(res=>{
+            const data = res.data;
+            if(data!==null && data!=='' && data!==undefined){
+                localStorage.setItem('login','true');
+                setLoginOpen(false);
+                setIsLogin(true);
+                setIsLogout(!isLogout);
+            }
+            else{
+                localStorage.setItem('notMatch','User name or password not matched');
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
     const logOut = ()=>{
        localStorage.clear();
@@ -40,7 +67,7 @@ function App(){
     const close = ()=>{
         setAddOpen(false);
     }
-    const [loginOpen,setLoginOpen] = useState(false);
+
     const open1 = ()=>{
         setLoginOpen(true);
     }
@@ -82,7 +109,7 @@ function App(){
                   </Routes>
               </React.Suspense>
                <Footer/>
-               <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
+               <LoginModal loginOpen={loginOpen} close1={close1} login={login} setData={setData}/>
                <AddMember addMember={addMember} closeAddMember={closeAddMember} />
                <AddModal addOpen={addOpen} close={close}/>
            </div>
