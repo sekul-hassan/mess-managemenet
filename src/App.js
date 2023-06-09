@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/Asset/css/Custom.css'
@@ -19,6 +19,8 @@ import Profile from "./Pages/Profile";
 import ProtectMatch from "./Components/Protected/ProtectMatch";
 import ProtectedProfile from "./Components/Protected/ProtectedProfile";
 import axios from "axios";
+import Bazar from "./Pages/Bazar";
+import ProtectBazar from "./Components/Protected/ProtectBazar";
 
 
 function App(){
@@ -42,11 +44,15 @@ function App(){
         e.preventDefault();
         axios.get(`http://localhost:8080/login`,{params:loginData}).then(res=>{
             const data = res.data;
+            console.log(data);
             if(data!==null && data!=='' && data!==undefined){
                 localStorage.setItem('login','true');
+                localStorage.setItem('messId',loginData.messId);
                 setLoginOpen(false);
                 setIsLogin(true);
                 setIsLogout(!isLogout);
+                console.log(data);
+                setLoginData({...loginData,messId: "",messPassword:""})
             }
             else{
                 localStorage.setItem('notMatch','User name or password not matched');
@@ -56,9 +62,13 @@ function App(){
         });
     }
     const logOut = ()=>{
-       localStorage.clear();
-       setIsLogin(false);
-       setIsLogout(false);
+       axios.get("http://localhost:8080/checkSession").then((res)=>{
+           const data = res.data;
+           console.log(data);
+       })
+        localStorage.clear();
+        setIsLogin(false);
+        setIsLogout(false);
     }
     const [addOpen,setAddOpen] = useState(false);
     const open = ()=>{
@@ -94,6 +104,10 @@ function App(){
         setLoadAgain(!loadAgain);
     }
 
+    useEffect(()=>{
+        console.log("testing");
+    })
+
     return (
     <BrowserRouter>
        <AddExtraContext.Provider value={{extra,openExtra,closeExtra,handleLoadAgain,loadAgain}}>
@@ -104,8 +118,9 @@ function App(){
                       <Route path="/" element={<Home/>}/>
                       <Route path="about" element={<About/>}/>
                       <Route path="contact" element={<Contact/>}/>
-                      <Route path="match" element={<ProtectMatch isLogin={isLogin} Match={Match} />} />
-                      <Route path="profile" element={<ProtectedProfile isLogin={isLogin} Profile = {Profile} />}/>
+                      <Route path="match" element={<ProtectMatch Match={Match} />} />
+                      <Route path="profile" element={<ProtectedProfile Profile = {Profile} />}/>
+                      <Route path="bazar" element={<ProtectBazar Bazar={Bazar}/>}/>
                   </Routes>
               </React.Suspense>
                <Footer/>

@@ -1,48 +1,53 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
-import {Button, Container, Row, Table} from "react-bootstrap";
-import axios from "axios";
-import AddExtraContext from "./Context/AddExtra";
-import ModifyContext from "./Context/ModifyContext";
+import React, { Fragment, useContext, useEffect, useState, useCallback } from 'react';
+import { Button, Container, Row, Table } from 'react-bootstrap';
+import axios from 'axios';
+import AddExtraContext from './Context/AddExtra';
+import ModifyContext from './Context/ModifyContext';
 
 function BorderList(props) {
-    const [user,setUser] = useState([]);
-    const {loadAgain} = useContext(AddExtraContext);
-    const {handleModify} = useContext(ModifyContext);
-    useEffect(()=>{
-        loadUser();
-    },[loadAgain]);
+    const [user, setUser] = useState([]);
+    const { loadAgain } = useContext(AddExtraContext);
+    const { handleModify } = useContext(ModifyContext);
+    const messId = localStorage.getItem('messId');
 
-    const loadUser = ()=>{
-        axios.get("http://localhost:8080/allMember").then((res)=>{
+    const loadUser = useCallback(() => {
+        axios.get(`http://localhost:8080/allMember/${messId}`).then((res) => {
             const data = res.data;
             setUser(data);
         });
-    }
+    }, [messId]);
 
-    const updateDone = async (id)=>{
-        await axios.put(`http://localhost:8080/oneMember/${user[id].id}`,user[id]);
-    }
-    const mealUpdate = (e)=>{
+    useEffect(() => {
+        loadUser();
+    }, [loadAgain, loadUser]);
+
+    const updateDone = async (id) => {
+        const did = user[id].id;
+        await axios.put(`http://localhost:8080/oneMember/${messId}/${did}`, user[id]);
+    };
+
+    const mealUpdate = (e) => {
         e.preventDefault();
         const name = e.target.name;
         const id = e.target.id;
-        if(name==="inc"){
+        if (name === 'inc') {
             user[id].totalMeal += 1;
-        }
-        else{
+        } else {
             user[id].totalMeal -= 1;
         }
-        if(user[id].totalMeal<=0){
+        if (user[id].totalMeal <= 0) {
             user[id].totalMeal = 0;
         }
-        updateDone(id).then((res)=>{loadUser()});
-    }
+        updateDone(id).then((res) => {
+            loadUser();
+        });
+    };
 
     return (
         <Fragment>
             <Container fluid={true} className="mt-0">
                 <Row>
-                    <Table striped bordered hover variant="dark">
+                    <Table className="boxWidth" striped bordered hover variant="dark">
                         <thead>
                         <tr>
                             <th>SI</th>
@@ -56,25 +61,28 @@ function BorderList(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {
-                            user.map((us,id)=>
-                                <tr key={id}>
-                                    <td>{id+1}</td>
-                                    <td>{us.name}</td>
-                                    <td>{us.email}</td>
-                                    <td>{us.phone}</td>
-                                    <td>{us.addTk}</td>
-                                    <td>{us.backTk}</td>
-                                    <td>{us.totalMeal}</td>
-                                    <td>
-                                        <Button className="pmbtn" name="inc" onClick={mealUpdate} id={id}>+</Button>
-                                        <Button className="pmbtn" name="dec" onClick={mealUpdate} id={id}>-</Button>
-                                        <Button className="modify" id={us.id} onClick={handleModify}>Modify</Button>
-                                    </td>
-                                </tr>
-
-                            )
-                        }
+                        {user.map((us,index) => (
+                            <tr key={us.id}>
+                                <td>{index+1}</td>
+                                <td>{us.name}</td>
+                                <td>{us.email}</td>
+                                <td>{us.phone}</td>
+                                <td>{us.addTk}</td>
+                                <td>{us.backTk}</td>
+                                <td>{us.totalMeal}</td>
+                                <td>
+                                    <Button className="pmbtn" name="inc" onClick={mealUpdate} id={index}>
+                                        +
+                                    </Button>
+                                    <Button className="pmbtn" name="dec" onClick={mealUpdate} id={index}>
+                                        -
+                                    </Button>
+                                    <Button className="modify" id={us.id} onClick={handleModify}>
+                                        Modify
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </Table>
                 </Row>

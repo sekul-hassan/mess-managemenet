@@ -317,3 +317,28 @@
     color: black;
     transition: 0.5s;
 }
+.boxWidth{
+    min-width: max-content;
+}
+
+.bazarModify{
+    margin: 0 5px;
+    padding: 5px 15px;
+    font-size: 1.1rem;
+}
+.bazarModify:hover{
+    background-color: black;
+    color: #61dafb;
+    transition: 0.5s;
+}
+.bazarDelete{
+    margin: 0 5px;
+    padding: 5px 15px;
+    font-size: 1.1rem;
+    background-color: darkred;
+}
+.bazarDelete:hover{
+    background-color: black;
+    color: darkred;
+    transition: 0.5s;
+}

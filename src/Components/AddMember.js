@@ -8,6 +8,7 @@ function AddMember({addMember,closeAddMember}) {
     const {handleLoadAgain} = useContext(AddExtraContext);
     const navigate = useNavigate();
     const [nullValue,setNullValue] = useState("");
+    const messId = localStorage.getItem('messId');
     const [user,setUser] = useState({
         name:"",
         email:"",
@@ -22,7 +23,7 @@ function AddMember({addMember,closeAddMember}) {
     const handleSummit =  (e)=>{
         e.preventDefault();
        if(user.name!=="" && user.email!=="" && user.phone!==""){
-           axios.post("http://localhost:8080/addMember", user)
+           axios.post(`http://localhost:8080/addMember/${messId}`, user)
                .then((response) => {
                    if(response.data){
                        setUser({name: "", email: "", phone: ""});

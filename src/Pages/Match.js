@@ -9,12 +9,12 @@ import axios from "axios";
 function Match(props) {
     const [openModify,setOpenModify] = useState(false);
     const [user,setUser] = useState([]);
-
+    const messId = localStorage.getItem("messId");
     const handleModify = (e)=>{
         setOpenModify(!openModify);
         if(!openModify){
             const id = e.target.id;
-            axios.get(`http://localhost:8080/oneMember/${id}`).then((res)=>{
+            axios.get(`http://localhost:8080/oneMember/${messId}/${id}`).then((res)=>{
                const data = res.data;
                setUser(data);
             });

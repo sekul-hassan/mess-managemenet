@@ -1,9 +1,11 @@
 import React, {Fragment, useContext} from 'react';
-import {Button, Container,Row} from "react-bootstrap";
-import AddExtraContext from "./Context/AddExtra";
+import {Button, Container, Row} from "react-bootstrap";
+import BazarContext from "./Context/BazarContext";
 
-function BorderTopBar(props) {
-    const {openExtra} = useContext(AddExtraContext);
+function BazarTop(props) {
+
+    const {handleSetAdd} = useContext(BazarContext);
+
     return (
         <Fragment>
             <Container fluid={true} className="p-0">
@@ -11,8 +13,8 @@ function BorderTopBar(props) {
                     <div className="borderOverlay">
                         <Row>
                             <div className="mainContent">
-                                <h2 className="content">Your Border List Here...</h2>
-                                <Button className="btnHover" onClick={openExtra}>ADD EXTRA BILL</Button>
+                                <h2 className="content">Your Bazar List Here...</h2>
+                                <Button className="btnHover" onClick={handleSetAdd}>Add Today Cost</Button>
                             </div>
                         </Row>
                     </div>
@@ -22,4 +24,4 @@ function BorderTopBar(props) {
     );
 }
 
-export default BorderTopBar;
+export default BazarTop;

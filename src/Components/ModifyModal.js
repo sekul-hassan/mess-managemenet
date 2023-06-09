@@ -8,12 +8,13 @@ function ModifyModal(props) {
     const {handleLoadAgain} = useContext(AddExtraContext);
     const {openModify,handleModify,user} = useContext(ModifyContext);
     const id = user.id;
+    const messId = localStorage.getItem("messId");
     const [updateUser,setUpdateUser] = useState({
         name:"",
         email:"",
         phone:"",
         addTk:"",
-        totalMeal:"",
+        totalMeal:0.0,
     });
 
     const handleSet = (e)=>{
@@ -22,14 +23,11 @@ function ModifyModal(props) {
         const value = e.target.value;
         setUpdateUser({...updateUser,[name]:value});
     }
-    const saveUpdate = (e)=>{
+    const saveUpdate = async (e)=>{
         e.preventDefault();
-        axios.put(`http://localhost:8080/oneMember/${id}`,updateUser).then((res)=>{
-            if(res.data){
-                handleLoadAgain();
-                handleModify();
-            }
-        })
+        await axios.put(`http://localhost:8080/oneMember/${messId}/${id}`,updateUser);
+        handleLoadAgain();
+        handleModify();
     }
 
     const handleDelete = ()=>{
