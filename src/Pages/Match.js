@@ -5,11 +5,13 @@ import AddExtraModal from "../Components/AddExtraModal";
 import ModifyModal from "../Components/ModifyModal";
 import ModifyContext from "../Components/Context/ModifyContext";
 import axios from "axios";
+import Summary from "../Components/Summary";
 
 function Match(props) {
     const [openModify,setOpenModify] = useState(false);
     const [user,setUser] = useState([]);
     const messId = localStorage.getItem("messId");
+    const [load,Reload] = useState(false);
     const handleModify = (e)=>{
         setOpenModify(!openModify);
         if(!openModify){
@@ -20,11 +22,13 @@ function Match(props) {
             });
         }
     }
+
     return (
         <Fragment>
-            <ModifyContext.Provider value={{openModify,handleModify,user}}>
+            <ModifyContext.Provider value={{openModify,handleModify,user,load,Reload}}>
                 <BorderTopBar/>
                 <BorderList/>
+                <Summary/>
                 <ModifyModal/>
                 <AddExtraModal/>
             </ModifyContext.Provider>

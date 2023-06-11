@@ -7,7 +7,7 @@ import ModifyContext from './Context/ModifyContext';
 function BorderList(props) {
     const [user, setUser] = useState([]);
     const { loadAgain } = useContext(AddExtraContext);
-    const { handleModify } = useContext(ModifyContext);
+    const { handleModify,load,Reload } = useContext(ModifyContext);
     const messId = localStorage.getItem('messId');
 
     const loadUser = useCallback(() => {
@@ -19,7 +19,7 @@ function BorderList(props) {
 
     useEffect(() => {
         loadUser();
-    }, [loadAgain, loadUser]);
+    }, [loadAgain, loadUser,load,Reload]);
 
     const updateDone = async (id) => {
         const did = user[id].id;

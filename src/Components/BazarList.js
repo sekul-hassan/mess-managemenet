@@ -16,6 +16,10 @@ function BazarList(props) {
             }
         });
     }
+    const formatTime = (year, month, day) => {
+        const date = new Date(year, month - 1, day);
+        return date.toLocaleDateString();
+    };
 
     return (
         <Fragment>
@@ -35,7 +39,7 @@ function BazarList(props) {
                             bills.map((data,index)=>(
                                 <tr key={data.id}>
                                     <td>{index+1}</td>
-                                    <td>{data.monthYear}</td>
+                                    <td>{formatTime(data.year, data.month, data.day)}</td>
                                     <td>{data.bill}</td>
                                     <td>
                                         <Button className="bazarModify" id={index} onClick={handleSet}>Modify</Button>
