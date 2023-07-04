@@ -1,30 +1,51 @@
-import React, {Fragment} from 'react';
-import {Button, Container, FloatingLabel, Form} from "react-bootstrap";
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import { Button, Container, Form, Row } from "react-bootstrap";
+import axios from "axios";
 
 function UserInfo(props) {
+    const messId = localStorage.getItem('messId');
+    const [mess, setMess] = useState({
+        messId: '',
+        messName: '',
+        messEmail: ''
+    });
+
+    const callMess = useCallback(() => {
+        axios.get(`http://localhost:8080/profileInfo/${messId}`).then((res) => {
+            console.log(res.data);
+            setMess(res.data);
+        });
+    }, [messId]);
+
+    useEffect(() => {
+        callMess();
+    }, [callMess]);
+
     return (
         <Fragment>
-            <Container fluid={true} className="pt-3 contact">
-                <h3>User Information with update form</h3>
-                <Form className="text-start">
-                    <Form.Group className="mb-3">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control required  type="name" placeholder="Enter Name"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email Address</Form.Label>
-                        <Form.Control required  type="email" placeholder="Enter E-mail"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <FloatingLabel
-                            controlId="floatingTextarea"
-                            label="Comments"
-                            className="mb-3">
-                            <Form.Control as="textarea" placeholder="Leave a comment here" />
-                        </FloatingLabel>
-                    </Form.Group>
-                    <Button variant="primary" type="submit" className="btnHover">Submit</Button>
-                </Form>
+            <Container className="mt-3 text-start">
+                <Row>
+                    <Form>
+                        <h2>Your mess Information</h2>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Mess Name is : </Form.Label>
+                            <Form.Control name="name" type="text" placeholder={mess.messName} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Mess Id is : </Form.Label>
+                            <Form.Control name="id" type="text" placeholder={mess.messId} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Mess Email is : </Form.Label>
+                            <Form.Control name="email" type="email" placeholder={mess.messEmail} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Type Your Password : </Form.Label>
+                            <Form.Control name="password" type="password" placeholder="Enter your password" />
+                        </Form.Group>
+                        <Button className="messUpdateBtn">Update</Button>
+                    </Form>
+                </Row>
             </Container>
         </Fragment>
     );

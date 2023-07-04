@@ -342,3 +342,7 @@
     color: darkred;
     transition: 0.5s;
 }
+.messUpdateBtn:hover{
+    background-color: #ffeeff;
+    color: black;
+}
