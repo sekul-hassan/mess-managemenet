@@ -1,5 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Container, Nav, Navbar} from "react-bootstrap";
+import React, { useEffect, useState} from 'react';
+import {Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 function AdditionMenu({logOut,openAddMember}) {
@@ -35,27 +35,23 @@ function AdditionMenu({logOut,openAddMember}) {
         return ()=> window.removeEventListener('scroll',handleScroll);
     });
     return (
-        <Fragment>
-            <Navbar sticky='top' className={scrollClass.navBar} collapseOnSelect expand="sm" bg="dark" variant="dark">
-                <Container>
-                    <Link to="/" className="text-decoration-none"><Navbar.Brand className={scrollClass.brand}>SEKUL HASSAN</Navbar.Brand></Link>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto"/>
-                        <Nav>
-                            <Link className={scrollClass.link} to="/">Home</Link>
-                            <Link className={scrollClass.link} to="about">About</Link>
-                            <Link className={scrollClass.link} to="contact">Contact</Link>
-                            <Link className={scrollClass.link} to="match">Match</Link>
-                            <Link className={scrollClass.link} to="bazar">Bazar</Link>
-                            <Link className={scrollClass.link} onClick={openAddMember} to={""}>AddMember</Link>
-                            <Link className={scrollClass.link} to="profile">Profile</Link>
-                            <Link className={scrollClass.link} onClick={logOut} to="/">LogOut</Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </Fragment>
+        <Navbar sticky='top' className={scrollClass.navBar} collapseOnSelect expand="sm" bg="dark" variant="dark">
+            <Link to="/" className="text-decoration-none"><Navbar.Brand className={scrollClass.brand}>RECURSIVE EDUCATION</Navbar.Brand></Link>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto"/>
+                <Nav>
+                    <Link className={scrollClass.link} to="/">Home</Link>
+                    <Link className={scrollClass.link} to="about">About</Link>
+                    <Link className={scrollClass.link} to="contact">Contact</Link>
+                    <Link className={scrollClass.link} to="match">Match</Link>
+                    <Link className={scrollClass.link} to="bazar">Bazar</Link>
+                    <Link className={scrollClass.link} onClick={openAddMember} to={""}>AddMember</Link>
+                    <Link className={scrollClass.link} to="profile">Profile</Link>
+                    <Link className={scrollClass.link} onClick={logOut} to="/">LogOut</Link>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     );
 }
 

@@ -1,0 +1,28 @@
+.title{
+    color: #FFFFFF;
+    fonnt-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.upperTitle{
+    color: #FFFFFF;
+    font-size: 22px;
+    font-family: Raleway, serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.subTitle{
+    color: #FFFFFF;
+    fonnt-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.description{
+    color: rgba(0,0,0,0.8);
+    fonnt-size: 15px;
+    font-family: Montserrat, serif;
+    font-weight: 400;
+}

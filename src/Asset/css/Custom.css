@@ -3,12 +3,15 @@
     background-color: rgba(0,0,0,0.5) !important;
     border: none;
     transition: background-color 1s ease 0s;
+    padding: 0 20px 0 20px;
 }
 .navbarScroll{
     min-height: 50px;
     background-color: rgba(300,300,300,1) !important;
     border: none;
     transition: background-color 0.5s ease 0s;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 .navBrand{
     color: #ffeeff !important;
@@ -77,8 +80,9 @@
 .overlay{
     background-size: cover;
     width: 100%;
-    position: absolute;
+    position: relative;
     min-height: 510px;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.5) center ;
     padding: 0;
     margin: 0;
@@ -87,24 +91,20 @@
     background: url("../Images/back.jpg") no-repeat fixed center;
     background-size: cover;
     margin-top: -70px;
+    height: 100vh;
     width: 100%;
     min-height: 510px;
 }
 .topBar{
-    margin-top: 12rem;
-    color: white;
-    font-size: 18px;
-    font-family: Roboto sans-serif;
-    font-weight: 700;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
 }
 .form{
    padding: 0.8rem 10rem;
     text-align: left;
-}
-
-.modal{
-    margin-top: 20px;
-    padding: 20px;
 }
 
 .borderTop{
@@ -140,7 +140,6 @@
     text-align: center;
 }
 .content{
-    color: #ffeeff;
     font-size: 1.8rem;
     font-family: Cantarell,sans-serif;
     font-weight: 500;
@@ -183,27 +182,25 @@
     background-size: cover;
     background: url("../Images/back.jpg") no-repeat center;
     min-height: 300px;
+    height: 50vh;
     width: 100%;
     margin-top: -70px;
 }
 .aboutTopOverlay{
     background-size: cover;
     width: 100%;
-    position: absolute;
+    position: relative;
     min-height: 300px;
+    height: 50vh;
     background: rgba(0, 0, 0, 0.5) center ;
     padding: 0;
     margin: 0;
 }
 .aboutBody{
-    margin-top: 110px;
-    text-align: center;
-}
-.aboutBody h2{
-    color: #61dafb;
-    font-weight: 700;
-    font-family: "Book Antiqua" ,sans-serif;
-    font-size: 1.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .cardBody{
@@ -228,7 +225,6 @@
 }
 
 .headerImg{
-    position: center;
     cursor: pointer;
     width: 100%;
     height: 180px;
@@ -248,8 +244,9 @@
     color: rgba(0,0,0,0.8);
 }
 .contact{
-    padding: 8px 200px;
+    padding: 5%;
     background-color: rgba(0,0,0,0.1);
+    height: 45vh;
 }
 .btnHover:hover{
     color: black;

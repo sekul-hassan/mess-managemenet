@@ -7,7 +7,7 @@ function Footer(props) {
         <Fragment>
             <Container fluid="true" className="mt-2">
                 <Card>
-                    <Card.Body><span>© 2023 SEKUL HASSAN. All rights reserved.</span></Card.Body>
+                    <Card.Body><span>© 2023 <a href="https://recursiveeducation.com/" target="_blank" rel="noreferrer">Recursive Education</a>. All rights reserved.</span></Card.Body>
                 </Card>
             </Container>
         </Fragment>

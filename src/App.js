@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/Asset/css/Custom.css'
+import '../src/Asset/css/Text.css'
 import Menu from "./Components/Menu";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Footer from "./Components/Footer";
@@ -111,23 +112,21 @@ function App(){
     return (
     <BrowserRouter>
        <AddExtraContext.Provider value={{extra,openExtra,closeExtra,handleLoadAgain,loadAgain}}>
-           <div className="App">
-               {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
-              <React.Suspense>
-                  <Routes>
-                      <Route path="/" element={<Home/>}/>
-                      <Route path="about" element={<About/>}/>
-                      <Route path="contact" element={<Contact/>}/>
-                      <Route path="match" element={<ProtectMatch Match={Match} />} />
-                      <Route path="profile" element={<ProtectedProfile Profile = {Profile} />}/>
-                      <Route path="bazar" element={<ProtectBazar Bazar={Bazar}/>}/>
-                  </Routes>
-              </React.Suspense>
-               <Footer/>
-               <LoginModal loginOpen={loginOpen} close1={close1} login={login} setData={setData}/>
-               <AddMember addMember={addMember} closeAddMember={closeAddMember} />
-               <AddModal addOpen={addOpen} close={close}/>
-           </div>
+           {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
+           <React.Suspense>
+               <Routes>
+                   <Route path="/" element={<Home/>}/>
+                   <Route path="about" element={<About/>}/>
+                   <Route path="contact" element={<Contact/>}/>
+                   <Route path="match" element={<ProtectMatch Match={Match} />} />
+                   <Route path="profile" element={<ProtectedProfile Profile = {Profile} />}/>
+                   <Route path="bazar" element={<ProtectBazar Bazar={Bazar}/>}/>
+               </Routes>
+           </React.Suspense>
+           <Footer/>
+           <LoginModal loginOpen={loginOpen} close1={close1} login={login} setData={setData}/>
+           <AddMember addMember={addMember} closeAddMember={closeAddMember} />
+           <AddModal addOpen={addOpen} close={close}/>
        </AddExtraContext.Provider>
     </BrowserRouter>
   );
