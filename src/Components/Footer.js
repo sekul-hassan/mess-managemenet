@@ -5,7 +5,7 @@ function Footer(props) {
 
     return (
         <Fragment>
-            <Container fluid="true" className="mt-2">
+            <Container fluid="true" className="mt-2 footer">
                 <Card>
                     <Card.Body><span>© 2023 <a href="https://recursiveeducation.com/" target="_blank" rel="noreferrer">Recursive Education</a>. All rights reserved.</span></Card.Body>
                 </Card>

@@ -4,9 +4,12 @@ import {Link} from "react-router-dom";
 
 function Menu({open,open1}){
     const [scrollClass,setScrollClass] = useState({
-        navBar:'navbar',
-        link:'link',
-        brand:'link',
+        // navBar:'navbar',
+        // link:'link',
+        // brand:'link',
+        navBar: 'navbarScroll',
+        link:'linkScroll',
+        brand:'navBrandScroll',
     });
     const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
     const [visible, setVisible] = useState(true);
@@ -25,9 +28,12 @@ function Menu({open,open1}){
             }
             else{
                 setScrollClass({
-                    navBar: 'navbar',
-                    link:'link',
-                    brand: 'navBrand',
+                    // navBar: 'navbar',
+                    // link:'link',
+                    // brand: 'navBrand',
+                    navBar: 'navbarScroll',
+                    link:'linkScroll',
+                    brand:'navBrandScroll',
                 }) ;
             }
         }
@@ -45,8 +51,10 @@ function Menu({open,open1}){
                     <Link className={scrollClass.link} to="/">Home</Link>
                     <Link className={scrollClass.link} to="about">About</Link>
                     <Link className={scrollClass.link} to="contact">Contact</Link>
-                    <Link className={scrollClass.link} onClick={open} >Register</Link>
-                    <Link className={scrollClass.link} onClick={open1} >Login</Link>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a className={scrollClass.link} onClick={open} >Register</a>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a className={scrollClass.link} onClick={open1} >Login</a>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

@@ -1,8 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/Asset/css/Custom.css'
 import '../src/Asset/css/Text.css'
+
 import Menu from "./Components/Menu";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Footer from "./Components/Footer";
@@ -22,46 +23,41 @@ import ProtectedProfile from "./Components/Protected/ProtectedProfile";
 import axios from "axios";
 import Bazar from "./Pages/Bazar";
 import ProtectBazar from "./Components/Protected/ProtectBazar";
+import {toast} from "react-toastify";
+import CustomToast from "./Components/CustomToast";
 
 
 function App(){
     const [loginOpen,setLoginOpen] = useState(false);
     const [isLogin,setIsLogin] = useState(false);
     const [isLogout,setIsLogout] = useState(true);
-    const [loginData,setLoginData] = useState({
-        messId:'',
-        messPassword:''
-    })
-    const setData = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        setLoginData(loginData => ({
-            ...loginData,
-            [name]: value
-        }));
-    };
 
-    const login = (e)=>{
-        e.preventDefault();
-        axios.get(`http://localhost:8080/login`,{params:loginData}).then(res=>{
+    const login = (e) => {
+        console.log(e);
+        axios.post(`http://localhost:8080/login`, {}, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'messId': e.messId,
+                'messPass': e.messPass
+            }
+        }).then(res => {
             const data = res.data;
-            console.log(data);
-            if(data!==null && data!=='' && data!==undefined){
-                localStorage.setItem('login','true');
-                localStorage.setItem('messId',loginData.messId);
-                setLoginOpen(false);
+            if (data !== null && data !== '' && data !== undefined) {
+                toast.success("Login successful");
+                localStorage.setItem('login', 'true');
                 setIsLogin(true);
                 setIsLogout(!isLogout);
-                console.log(data);
-                setLoginData({...loginData,messId: "",messPassword:""})
-            }
-            else{
-                localStorage.setItem('notMatch','User name or password not matched');
+            } else {
+                toast.error("Login failed.");
+                localStorage.setItem('notMatch', 'User name or password not matched');
             }
         }).catch(err => {
             console.log(err);
+            toast.error(err.response.data.message);
         });
     }
+
     const logOut = ()=>{
        axios.get("http://localhost:8080/checkSession").then((res)=>{
            const data = res.data;
@@ -105,26 +101,21 @@ function App(){
         setLoadAgain(!loadAgain);
     }
 
-    useEffect(()=>{
-        console.log("testing");
-    })
-
     return (
     <BrowserRouter>
        <AddExtraContext.Provider value={{extra,openExtra,closeExtra,handleLoadAgain,loadAgain}}>
            {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
-           <React.Suspense>
-               <Routes>
-                   <Route path="/" element={<Home/>}/>
-                   <Route path="about" element={<About/>}/>
-                   <Route path="contact" element={<Contact/>}/>
-                   <Route path="match" element={<ProtectMatch Match={Match} />} />
-                   <Route path="profile" element={<ProtectedProfile Profile = {Profile} />}/>
-                   <Route path="bazar" element={<ProtectBazar Bazar={Bazar}/>}/>
-               </Routes>
-           </React.Suspense>
+           <Routes>
+               <Route path="/" element={<Home/>}/>
+               <Route path="about" element={<About/>}/>
+               <Route path="contact" element={<Contact/>}/>
+               <Route path="match" element={<ProtectMatch Match={Match} />} />
+               <Route path="profile" element={<ProtectedProfile Profile = {Profile} />}/>
+               <Route path="bazar" element={<ProtectBazar Bazar={Bazar}/>}/>
+           </Routes>
            <Footer/>
-           <LoginModal loginOpen={loginOpen} close1={close1} login={login} setData={setData}/>
+           <CustomToast/>
+           <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
            <AddMember addMember={addMember} closeAddMember={closeAddMember} />
            <AddModal addOpen={addOpen} close={close}/>
        </AddExtraContext.Provider>

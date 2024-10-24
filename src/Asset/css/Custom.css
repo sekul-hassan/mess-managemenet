@@ -82,7 +82,7 @@
     width: 100%;
     position: relative;
     min-height: 510px;
-    height: 100vh;
+    height: calc(100vh - 50px);
     background: rgba(0, 0, 0, 0.5) center ;
     padding: 0;
     margin: 0;
@@ -91,7 +91,7 @@
     background: url("../Images/back.jpg") no-repeat fixed center;
     background-size: cover;
     margin-top: -70px;
-    height: 100vh;
+    height: calc(100vh - 50px);
     width: 100%;
     min-height: 510px;
 }
@@ -342,4 +342,7 @@
 .messUpdateBtn:hover{
     background-color: #ffeeff;
     color: black;
+}
+.footer{
+    height: 30px;
 }
