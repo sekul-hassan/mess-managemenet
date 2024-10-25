@@ -33,7 +33,6 @@ function App(){
     const [isLogout,setIsLogout] = useState(true);
 
     const login = (e) => {
-        console.log(e);
         axios.post(`http://localhost:8080/login`, {}, {
             headers: {
                 'Accept': 'application/json',
@@ -43,10 +42,13 @@ function App(){
             }
         }).then(res => {
             const data = res.data;
-            if (data !== null && data !== '' && data !== undefined) {
+            console.log(data.data.messId);
+            if (data.data) {
                 toast.success("Login successful");
                 localStorage.setItem('login', 'true');
+                localStorage.setItem('messId', data.data.messId);
                 setIsLogin(true);
+                setLoginOpen(false);
                 setIsLogout(!isLogout);
             } else {
                 toast.error("Login failed.");

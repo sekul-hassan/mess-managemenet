@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AddExtraContext from "./Context/AddExtra";
 import GlobalForm from "./CustomForm/GlobalForm";
 import {addMemberData} from "./CustomForm/FormData";
+import {toast} from "react-toastify";
 
 function AddMember({addMember,closeAddMember}) {
     const {handleLoadAgain} = useContext(AddExtraContext);
@@ -13,14 +14,17 @@ function AddMember({addMember,closeAddMember}) {
 
 
     const memberAdd =  (data)=>{
+        console.log(messId);
         axios.post(`http://localhost:8080/addMember/${messId}`, data)
             .then((response) => {
+                toast.success(response.data.message);
                 closeAddMember();
                 navigate("match");
                 handleLoadAgain();
             })
             .catch((error) => {
-                console.error(error);
+                toast.error("Illegal Access.");
+                console.log(error);
             });
     }
 
