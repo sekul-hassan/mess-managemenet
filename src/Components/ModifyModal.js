@@ -13,7 +13,7 @@ function ModifyModal(props) {
         name:"",
         email:"",
         phone:"",
-        addTk:"",
+        addTk:0.0,
         totalMeal:0.0,
     });
 

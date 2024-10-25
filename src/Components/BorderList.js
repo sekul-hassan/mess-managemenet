@@ -12,7 +12,7 @@ function BorderList(props) {
 
     const loadUser = useCallback(() => {
         axios.get(`http://localhost:8080/allMember/${messId}`).then((res) => {
-            const data = res.data;
+            const data = res.data.data;
             setUser(data);
         });
     }, [messId]);
