@@ -20,7 +20,7 @@ function Bazar(props) {
             try {
                 const res = await axios.get(`http://localhost:8080/getAllCost/${messId}`);
                 const data = res.data;
-                setBill(data);
+                setBill(data.data);
                 setLoad(false);
             } catch (error) {
                 console.log(error);
