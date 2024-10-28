@@ -91,13 +91,7 @@ function App(){
         setAddMember(false);
     }
 
-    const [extra,setExtra] = useState(false);
-    const openExtra = ()=>{
-        setExtra(true);
-    }
-    const closeExtra = ()=>{
-        setExtra(false);
-    }
+
     const [loadAgain,setLoadAgain] = useState(false);
     const handleLoadAgain = ()=>{
         setLoadAgain(!loadAgain);
@@ -105,7 +99,7 @@ function App(){
 
     return (
     <BrowserRouter>
-       <AddExtraContext.Provider value={{extra,openExtra,closeExtra,handleLoadAgain,loadAgain}}>
+       <AddExtraContext.Provider value={{handleLoadAgain,loadAgain}}>
            {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
            <Routes>
                <Route path="/" element={<Home/>}/>

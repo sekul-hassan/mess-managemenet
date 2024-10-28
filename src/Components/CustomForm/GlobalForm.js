@@ -15,7 +15,7 @@ function GlobalForm({ formData, onSubmit }) {
                             type={item.type}
                             placeholder={item.placeholder}
                             {...register(item.name, {
-                                required: { value: true, message: `This field is required` } // Custom error message
+                                required: { value: item.required, message: `This field is required` } // Custom error message
                             })}
                         />
                         {errors[item.name] && <p className="text-danger">{errors[item.name].message}</p>}

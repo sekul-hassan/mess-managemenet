@@ -47,6 +47,7 @@ function BorderList(props) {
         <Fragment>
             <Container fluid={true} className="mt-0">
                 <Row>
+                    <h3 className="text-center">All Border List Here</h3>
                     <Table className="boxWidth" striped bordered hover variant="dark">
                         <thead>
                         <tr>

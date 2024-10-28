@@ -2,6 +2,7 @@ import React, {Fragment, useContext, useState} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 import BazarContext from "./Context/BazarContext";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 function ModifyCost() {
 
@@ -17,12 +18,12 @@ function ModifyCost() {
     const handleSubmit = (e)=>{
         e.preventDefault();
         const id = bills[idx].id;
-        axios.put(`http://localhost:8080/saveCost/${id}`,data).then((res)=>{
-            const data = res.data;
-            if(data){
-                setLoad(!load);
-                handleSet1();
-            }
+        axios.put(`http://localhost:8080/updateCost/${id}`,data).then((res)=>{
+            setLoad(!load);
+            handleSet1();
+            toast.success("Update cost successfully");
+        }).catch((err)=>{
+            toast.error("You don't have permission to update cost");
         })
     }
 

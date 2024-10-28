@@ -2,6 +2,7 @@ import React, {Fragment, useContext} from 'react';
 import {Button, Container, Row, Table} from "react-bootstrap";
 import BazarContext from "./Context/BazarContext";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 function BazarList(props) {
 
@@ -9,17 +10,13 @@ function BazarList(props) {
     const deleteCost = (e)=>{
         e.preventDefault();
         const idx = bills[e.target.id].id;
-        axios.delete(`http://localhost:8080/costDelete/${idx}`).then((res)=>{
-            const data = res.data;
-            if(data){
-                setLoad(!load);
-            }
-        });
+        axios.delete(`http://localhost:8080/deleteCost/${idx}`).then((res)=>{
+            setLoad(!load);
+            toast.success(res.data.message);
+        }).catch(err=>{
+            toast.error("You don't have permission to delete");
+        })
     }
-    const formatTime = (year, month, day) => {
-        const date = new Date(year, month - 1, day);
-        return date.toLocaleDateString();
-    };
 
     return (
         <Fragment>
@@ -39,7 +36,7 @@ function BazarList(props) {
                             bills.map((data,index)=>(
                                 <tr key={data.id}>
                                     <td>{index+1}</td>
-                                    <td>{formatTime(data.year, data.month, data.day)}</td>
+                                    <td>{data.billDate}</td>
                                     <td>{data.bill}</td>
                                     <td>
                                         <Button className="bazarModify" id={index} onClick={handleSet}>Modify</Button>

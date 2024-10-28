@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import { Button, Container, Form, Modal, Row } from 'react-bootstrap';
 import BazarContext from './Context/BazarContext';
 import axios from 'axios';
+import {toast} from "react-toastify";
 
 function AddCost(props) {
     const { add, handleSetAdd,setLoad } = useContext(BazarContext);
@@ -15,9 +16,12 @@ function AddCost(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:8080/saveCost/${messId}`, cost).then((res) => {
+            toast.success(res.data.message);
             handleSetAdd();
             setLoad(true);
-        });
+        }).catch((err) => {
+            toast.error("You don't have access to add cost");
+        })
     };
 
     return (

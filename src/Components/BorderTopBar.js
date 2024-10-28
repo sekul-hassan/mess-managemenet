@@ -1,9 +1,9 @@
 import React, {Fragment, useContext} from 'react';
 import {Button, Container,Row} from "react-bootstrap";
-import AddExtraContext from "./Context/AddExtra";
+import ModifyContext from "./Context/ModifyContext";
 
 function BorderTopBar(props) {
-    const {openExtra} = useContext(AddExtraContext);
+    const {openExtra} = useContext(ModifyContext);
     return (
         <Fragment>
             <Container fluid={true} className="p-0">

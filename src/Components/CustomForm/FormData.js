@@ -69,7 +69,38 @@ const addMemberData = [
         name: "phone",
         required: true,
     }
+];
+
+const addExtraData = [
+    {
+        level:"Enter wifi bills",
+        placeholder: "Wifi bills",
+        type: "number",
+        name: "wifiBill",
+        required: true,
+    },
+    {
+        level:"Enter fixed meal",
+        placeholder: "Fixed meal",
+        type: "number",
+        name: "fixedMeal",
+        required: true,
+    },
+    {
+        level:"Enter khala bills",
+        placeholder: "Klala bills",
+        type: "number",
+        name: "khalaBill",
+        required: true,
+    },
+    {
+        level:"Enter Others",
+        placeholder: "Others",
+        type: "number",
+        name: "others",
+        required: false,
+    },
 ]
 
-export {loginFormData,registerFormData,addMemberData};
+export {loginFormData,registerFormData,addMemberData,addExtraData};
 
