@@ -1,9 +1,9 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Container, Row, Table} from "react-bootstrap";
-import ModifyContext from "./Context/ModifyContext";
 import {toast} from "react-toastify";
 import ModifyExtraBill from "./ModifyExtraBill";
+import BazarContext from "./Context/BazarContext";
 
 function ExtraBill(props) {
 
@@ -11,8 +11,7 @@ function ExtraBill(props) {
     const[extraBill, setExtraBill] = React.useState([]);
     const [billData, setBillData] = React.useState({});
     const messId = localStorage.getItem('messId');
-    const{reloadExtraBill,setReloadExtraBill} = useContext(ModifyContext);
-
+    const{reloadExtraBill,setReloadExtraBill,openExtra} = useContext(BazarContext);
     useEffect(() => {
         axios.get(`http://localhost:8080/extraBillIs/${messId}`).then((response) => {
             setExtraBill(response.data.data);
@@ -37,9 +36,12 @@ function ExtraBill(props) {
 
     return (
       <Fragment>
-          <Container>
-              <Row>
-                  <h3 className="text-center">Here All Extra Bills</h3>
+          <Container fluid="true">
+             <div className="text-center mt-3">
+                 <Button className="btnHover" onClick={openExtra}>ADD EXTRA BILL</Button>
+             </div>
+              <Row className="mx-0">
+                  <h3 className="text-center mt-2">Here All Extra Bills</h3>
                   <Table className="boxWidth" striped bordered hover variant="dark">
                       <thead>
                       <tr>

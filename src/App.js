@@ -14,7 +14,6 @@ import {useState} from "react";
 import AdditionMenu from "./Components/AdditionMenu";
 import LoginModal from "./Components/LoginModal";
 import AddModal from "./Components/AddModal";
-import AddMember from "./Components/AddMember";
 import Match from "./Pages/Match";
 import AddExtraContext from "./Components/Context/AddExtra";
 import Profile from "./Pages/Profile";
@@ -83,13 +82,6 @@ function App(){
     const close1 = ()=>{
         setLoginOpen(false);
     }
-    const [addMember,setAddMember] = useState(false);
-    const openAddMember = ()=>{
-        setAddMember(true);
-    }
-    const closeAddMember = ()=>{
-        setAddMember(false);
-    }
 
 
     const [loadAgain,setLoadAgain] = useState(false);
@@ -100,7 +92,7 @@ function App(){
     return (
     <BrowserRouter>
        <AddExtraContext.Provider value={{handleLoadAgain,loadAgain}}>
-           {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut} openAddMember={openAddMember} />):(<Menu open = {open} open1={open1}/>)}
+           {(localStorage.getItem('login') || isLogin) ? (<AdditionMenu logOut={logOut}/>):(<Menu open = {open} open1={open1}/>)}
            <Routes>
                <Route path="/" element={<Home/>}/>
                <Route path="about" element={<About/>}/>
@@ -112,7 +104,7 @@ function App(){
            <Footer/>
            <CustomToast/>
            <LoginModal loginOpen={loginOpen} close1={close1} login={login}/>
-           <AddMember addMember={addMember} closeAddMember={closeAddMember} />
+
            <AddModal addOpen={addOpen} close={close}/>
        </AddExtraContext.Provider>
     </BrowserRouter>

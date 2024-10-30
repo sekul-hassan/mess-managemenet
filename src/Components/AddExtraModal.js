@@ -4,10 +4,10 @@ import axios from "axios";
 import GlobalForm from "./CustomForm/GlobalForm";
 import {addExtraData} from "./CustomForm/FormData";
 import {toast} from "react-toastify";
-import ModifyContext from "./Context/ModifyContext";
+import BazarContext from "./Context/BazarContext";
 
 function AddExtraModal(props) {
-    const {extra,closeExtra,reloadExtraBill,setReloadExtraBill} = useContext(ModifyContext);
+    const {extra,closeExtra,reloadExtraBill,setReloadExtraBill} = useContext(BazarContext);
     const messId = localStorage.getItem('messId');
 
     const handleSubmit = (e)=>{

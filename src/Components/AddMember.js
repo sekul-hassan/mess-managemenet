@@ -1,15 +1,15 @@
 import React, {Fragment, useContext} from 'react';
 import {Button, Container, Modal, Row} from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import AddExtraContext from "./Context/AddExtra";
 import GlobalForm from "./CustomForm/GlobalForm";
 import {addMemberData} from "./CustomForm/FormData";
 import {toast} from "react-toastify";
+import ModifyContext from "./Context/ModifyContext";
 
-function AddMember({addMember,closeAddMember}) {
+function AddMember() {
     const {handleLoadAgain} = useContext(AddExtraContext);
-    const navigate = useNavigate();
+    const{addMember,closeAddMember} = useContext(ModifyContext);
     const messId = localStorage.getItem('messId');
 
 
@@ -19,7 +19,6 @@ function AddMember({addMember,closeAddMember}) {
             .then((response) => {
                 toast.success(response.data.message);
                 closeAddMember();
-                navigate("match");
                 handleLoadAgain();
             })
             .catch((error) => {

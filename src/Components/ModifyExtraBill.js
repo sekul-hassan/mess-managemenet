@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import {Button, Container, Form, Modal, Row} from "react-bootstrap";
-import ModifyContext from "./Context/ModifyContext";
 import axios from "axios";
 import {toast} from "react-toastify";
+import BazarContext from "./Context/BazarContext";
 
 function ModifyExtraBill({modifyExtraBill, setModifyExtraBill,billData}) {
 
-    const{reloadExtraBill,setReloadExtraBill} = useContext(ModifyContext);
+    const{reloadExtraBill,setReloadExtraBill} = useContext(BazarContext);
     const handleSet = (e) =>{
         const{name,value} = e.target;
         billData[name]=value;

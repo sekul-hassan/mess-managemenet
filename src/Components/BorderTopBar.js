@@ -3,7 +3,7 @@ import {Button, Container,Row} from "react-bootstrap";
 import ModifyContext from "./Context/ModifyContext";
 
 function BorderTopBar(props) {
-    const {openExtra} = useContext(ModifyContext);
+    const {openAddMember} = useContext(ModifyContext);
     return (
         <Fragment>
             <Container fluid={true} className="p-0">
@@ -12,7 +12,8 @@ function BorderTopBar(props) {
                         <Row>
                             <div className="mainContent">
                                 <h2 className="content">Your Border List Here...</h2>
-                                <Button className="btnHover" onClick={openExtra}>ADD EXTRA BILL</Button>
+
+                                <Button className="btnHover" onClick={openAddMember}>Add Member</Button>
                             </div>
                         </Row>
                     </div>

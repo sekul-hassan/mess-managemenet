@@ -5,15 +5,24 @@ import ModifyCost from "../Components/ModifyCost";
 import BazarContext from "../Components/Context/BazarContext";
 import AddCost from "../Components/AddCost";
 import axios from "axios";
+import ExtraBill from "../Components/ExtraBill";
+import AddExtraModal from "../Components/AddExtraModal";
 
 function Bazar(props) {
     const [set,reset] = useState(false);
     const [add,setAdd] = useState(false);
     const [load,setLoad] = useState(false);
     const [bills,setBill] = useState([]);
-    const messId = localStorage.getItem('messId');
     const [idx,setId] = useState(null);
-
+    const [extra,setExtra] = useState(false);
+    const[reloadExtraBill,setReloadExtraBill] = useState(false);
+    const messId = localStorage.getItem('messId');
+    const openExtra = ()=>{
+        setExtra(true);
+    }
+    const closeExtra = ()=>{
+        setExtra(false);
+    }
 
     useEffect(() => {
         const loadBill = async () => {
@@ -43,11 +52,13 @@ function Bazar(props) {
 
     return (
         <Fragment>
-            <BazarContext.Provider value={{set,handleSet,handleSet1,add,handleSetAdd,load,setLoad,bills,idx}}>
+            <BazarContext.Provider value={{set,handleSet,handleSet1,add,handleSetAdd,load,setLoad,bills,idx,extra,openExtra,closeExtra,reloadExtraBill,setReloadExtraBill}}>
                 <BazarTop/>
                 <BazarList/>
+                <ExtraBill/>
                 <ModifyCost/>
                 <AddCost/>
+                <AddExtraModal/>
             </BazarContext.Provider>
         </Fragment>
     );
