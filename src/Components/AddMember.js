@@ -17,6 +17,7 @@ function AddMember() {
         console.log(messId);
         axios.post(`http://localhost:8080/addMember/${messId}`, data)
             .then((response) => {
+                console.log(response);
                 toast.success(response.data.message);
                 closeAddMember();
                 handleLoadAgain();

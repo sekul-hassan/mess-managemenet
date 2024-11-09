@@ -44,7 +44,7 @@ function AdditionMenu({logOut}) {
                     <Link className={scrollClass.link} to="/">Home</Link>
                     <Link className={scrollClass.link} to="about">About</Link>
                     <Link className={scrollClass.link} to="contact">Contact</Link>
-                    <Link className={scrollClass.link} to="match">Match</Link>
+                    <Link className={scrollClass.link} to="match">Mess</Link>
                     <Link className={scrollClass.link} to="bazar">Bazar</Link>
                     <Link className={scrollClass.link} to="profile">Profile</Link>
                     <Link className={scrollClass.link} onClick={logOut} to="/">LogOut</Link>
