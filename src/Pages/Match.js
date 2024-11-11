@@ -39,7 +39,6 @@ function Match(props) {
                 <AddMember/>
                 <Summary/>
                 <ModifyModal/>
-
             </ModifyContext.Provider>
         </Fragment>
     );

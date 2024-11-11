@@ -48,6 +48,7 @@ function ExtraBill(props) {
                           <th>SI</th>
                           <th>Wifi bills</th>
                           <th>Khala bills</th>
+                          <th>Fixed Meal</th>
                           <th>Others</th>
                           <th>Take Action</th>
                       </tr>
@@ -58,6 +59,7 @@ function ExtraBill(props) {
                               <td>{index+1}</td>
                               <td>{us.wifiBill}</td>
                               <td>{us.khalaBill}</td>
+                              <td>{us.fixedMeal}</td>
                               <td>{us.others}</td>
                               <td>
                                   <Button variant="outline-light" className="mx-2" onClick={()=>showExtraBillModify(us)}>Modify</Button>

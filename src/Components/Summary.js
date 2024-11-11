@@ -34,9 +34,6 @@ function Summary(props) {
                             <th>Total-TK</th>
                             <th>Total-Cost</th>
                             <th>Total-Meal</th>
-                            <th>Khala</th>
-                            <th>Wifi</th>
-                            <th>Fixed</th>
                             <th>Meal-Rate</th>
                         </tr>
                         </thead>
@@ -46,9 +43,6 @@ function Summary(props) {
                             <td>{data.addTk}</td>
                             <td>{data.totalCost}</td>
                             <td>{data.totalMeal}</td>
-                            <td>{data.khala}</td>
-                            <td>{data.wifi}</td>
-                            <td>{data.fixed}</td>
                             <td>{data.mealRate}</td>
                         </tr>
                         </tbody>
