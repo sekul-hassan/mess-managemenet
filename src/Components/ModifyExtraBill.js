@@ -42,7 +42,7 @@ function ModifyExtraBill({modifyExtraBill, setModifyExtraBill,billData}) {
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Update fixed meal</Form.Label>
-                                <Form.Control name="khalaBill" onChange={handleSet} type="number" placeholder={billData.fixedMeal}/>
+                                <Form.Control name="fixedMeal" onChange={handleSet} type="number" placeholder={billData.fixedMeal}/>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Update others</Form.Label>

@@ -12,6 +12,8 @@ function ExtraBill(props) {
     const [billData, setBillData] = React.useState({});
     const messId = localStorage.getItem('messId');
     const{reloadExtraBill,setReloadExtraBill,openExtra} = useContext(BazarContext);
+
+
     useEffect(() => {
         axios.get(`http://localhost:8080/extraBillIs/${messId}`).then((response) => {
             setExtraBill(response.data.data);

@@ -13,11 +13,12 @@ function AddExtraModal(props) {
     const handleSubmit = (e)=>{
         axios.post(`http://localhost:8080/saveBill/${messId}`,e).then((res)=>{
             toast.success(res.data.message);
+            console.log(res.data.message);
             setReloadExtraBill(!reloadExtraBill);
             closeExtra();
         }).catch((err)=>{
             console.log(err);
-            toast.error("You don't have access to add extra bills");
+            toast.error(err.response.data.message);
         })
     }
 
