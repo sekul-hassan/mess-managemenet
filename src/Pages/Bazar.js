@@ -17,6 +17,11 @@ function Bazar(props) {
     const [extra,setExtra] = useState(false);
     const[reloadExtraBill,setReloadExtraBill] = useState(false);
     const messId = localStorage.getItem('messId');
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+
     const openExtra = ()=>{
         setExtra(true);
     }
@@ -27,7 +32,7 @@ function Bazar(props) {
     useEffect(() => {
         const loadBill = async () => {
             try {
-                const res = await axios.get(`http://localhost:8080/getAllCost/${messId}`);
+                const res = await axios.get(`http://localhost:8080/getAllCost/${messId}/${year}/${month}`);
                 const data = res.data;
                 setBill(data.data);
                 setLoad(false);
@@ -37,7 +42,7 @@ function Bazar(props) {
         };
 
         loadBill();
-    }, [messId, setBill,load,setLoad]);
+    }, [messId, setBill,load,setLoad,year,month]);
 
     const handleSetAdd = ()=>{
         setAdd(!add);

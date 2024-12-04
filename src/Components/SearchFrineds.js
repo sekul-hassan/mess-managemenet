@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Form, ListGroup} from 'react-bootstrap';
+import axios from "axios";
 
 function SearchFriends() {
-    const messNames = [
-        'Mess One',
-        'Mess Two',
-        'Mess Three',
-        'Mess Four',
-        'Another Mess',
-    ];
+    const[messNames,setMessNames] = useState([]);
+
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/findMess").then(res => {
+            setMessNames(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
 
     const [searchTerm, setSearchTerm] = useState('');
 

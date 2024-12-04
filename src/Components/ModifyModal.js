@@ -3,10 +3,11 @@ import {Button, Container, Form, Modal, Row} from "react-bootstrap";
 import ModifyContext from "./Context/ModifyContext";
 import axios from "axios";
 import AddExtraContext from "./Context/AddExtra";
+import {toast} from "react-toastify";
 
 function ModifyModal(props) {
     const {handleLoadAgain} = useContext(AddExtraContext);
-    const {openModify,handleModify,user} = useContext(ModifyContext);
+    const {openModify,handleModify,user,load,Reload} = useContext(ModifyContext);
     const id = user.id;
     const messId = localStorage.getItem("messId");
     const [updateUser,setUpdateUser] = useState({
@@ -25,9 +26,15 @@ function ModifyModal(props) {
     }
     const saveUpdate = async (e)=>{
         e.preventDefault();
-        await axios.put(`http://localhost:8080/oneMember/${messId}/${id}`,updateUser);
-        handleLoadAgain();
-        handleModify();
+        axios.put(`http://localhost:8080/oneMember/${messId}/${id}`,updateUser).then((res)=>{
+            handleLoadAgain();
+            handleModify();
+            Reload(!load);
+        }).catch((err)=>{
+            console.log(err);
+            toast.error("Update update failure");
+        })
+
     }
 
     const handleDelete = ()=>{
@@ -35,6 +42,7 @@ function ModifyModal(props) {
             if(res.data){
                 handleLoadAgain();
                 handleModify();
+                Reload(!load);
             }
         })
     }

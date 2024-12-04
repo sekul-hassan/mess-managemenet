@@ -9,7 +9,7 @@ function Summary(props) {
 
     const messId = localStorage.getItem('messId');
     const [data, setData] = useState([]);
-    const { load,Reload } = useContext(ModifyContext);
+    const { load } = useContext(ModifyContext);
 
     useEffect(() => {
         const date = new Date();
@@ -21,12 +21,10 @@ function Summary(props) {
             console.log(getData);
             setData(getData);
             toast.success(res.data.message);
-            Reload(!load);
         }).catch((err) => {
             console.log(err);
-            toast.error("Could not load data");
         })
-    });
+    },[messId,load]);
 
 
     return (

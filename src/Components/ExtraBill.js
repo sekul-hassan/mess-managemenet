@@ -13,13 +13,17 @@ function ExtraBill(props) {
     const messId = localStorage.getItem('messId');
     const{reloadExtraBill,setReloadExtraBill,openExtra} = useContext(BazarContext);
 
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/extraBillIs/${messId}`).then((response) => {
+        axios.get(`http://localhost:8080/extraBillIs/${messId}/${year}/${month}`).then((response) => {
             setExtraBill(response.data.data);
             console.log(response.data.data);
         })
-    }, [messId,reloadExtraBill]);
+    }, [messId,reloadExtraBill,year,month]);
 
     const deleteExtraBill = (id) => {
         axios.delete(`http://localhost:8080/deleteExtraBill/${id}`).then((response) => {

@@ -9,7 +9,7 @@ import ModifyContext from "./Context/ModifyContext";
 
 function AddMember() {
     const {handleLoadAgain} = useContext(AddExtraContext);
-    const{addMember,closeAddMember} = useContext(ModifyContext);
+    const{addMember,closeAddMember,load,Reload} = useContext(ModifyContext);
     const messId = localStorage.getItem('messId');
 
 
@@ -21,6 +21,7 @@ function AddMember() {
                 toast.success(response.data.message);
                 closeAddMember();
                 handleLoadAgain();
+                Reload(!load)
             })
             .catch((error) => {
                 toast.error("Illegal Access.");
