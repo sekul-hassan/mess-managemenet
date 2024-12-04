@@ -1,16 +1,16 @@
 import React, {Fragment} from 'react';
-import { Container} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 
 function HomeTopBar(props) {
     return (
         <Fragment>
             <Container fluid='true' className="background">
                 <div className="overlay">
-                    {/*<div className="topBar">*/}
-                    {/*    <h1 className="title">Hi i am sekul hassan</h1>*/}
-                    {/*    <h2 className="subTitle">Mobile && Web app developer</h2>*/}
-                    {/*    <Button className="btnHover">Find Me</Button>*/}
-                    {/*</div>*/}
+                    <div className="topBar">
+                        <h1 className="upperTitle">This is mess management web application</h1>
+                        <h2 className="subTitle text-uppercase mt-4 mb-4">Please explore this & developer with</h2>
+                        <a className="btnHover" href="https://recursiveeducation.com" target="_blank" rel="noreferrer">Find Me</a>
+                    </div>
                 </div>
             </Container>
         </Fragment>

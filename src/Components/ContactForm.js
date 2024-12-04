@@ -1,28 +1,24 @@
 import React from 'react';
-import {Button, Container, FloatingLabel, Form} from "react-bootstrap";
+import {Container, Form} from "react-bootstrap";
 
 function ContactForm(props) {
     return (
-        <Container fluid={true} className="mt-4 contact">
-            <h4 className="subTitle mt-3">To contact our team please fill up this form and submit it.</h4>
+        <Container className="mt-4 mb-2 contact">
+            <h4 className="title text-uppercase mt-3">Please submit your feed back</h4>
             <Form className="text-start mt-3">
                 <Form.Group className="mb-3">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control required  type="name" placeholder="Enter Name"/>
+                    <Form.Label className="title">Name</Form.Label>
+                    <Form.Control className="title" required  type="name" placeholder="Enter Name"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control required  type="email" placeholder="Enter E-mail"/>
+                    <Form.Label className="title">Email Address</Form.Label>
+                    <Form.Control className="title" required  type="email" placeholder="Enter E-mail"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <FloatingLabel
-                        controlId="floatingTextarea"
-                        label="Comments"
-                        className="mb-3">
-                        <Form.Control as="textarea" placeholder="Leave a comment here" />
-                    </FloatingLabel>
+                    <Form.Label className="title">Comments Here</Form.Label>
+                    <Form.Control as="textarea" className="title"  placeholder="Leave a comment here" />
                 </Form.Group>
-                <Button variant="primary" type="submit" className="btnHover">Submit</Button>
+                <button onClick={()=>({})} type="submit" className="btnHover">Submit</button>
             </Form>
         </Container>
     );

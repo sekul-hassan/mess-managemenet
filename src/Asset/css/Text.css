@@ -8,21 +8,23 @@
 .upperTitle{
     color: #FFFFFF;
     font-size: 22px;
-    font-family: Raleway, serif;
+    font-family: "Raleway", "serif";
     font-weight: 400;
     text-transform: uppercase;
 }
 
 .subTitle{
     color: #FFFFFF;
-    fonnt-size: 18px;
+    font-size: 20px;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .description{
     color: rgba(0,0,0,0.8);
-    fonnt-size: 15px;
+    font-size: 15px;
     font-family: Montserrat, serif;
     font-weight: 400;
+    line-height: 1.7rem;
+    text-align: start;
 }
