@@ -31,7 +31,7 @@ A full-stack web application designed for managing mess facilities, meal trackin
 
 Before you start, ensure you have the following installed:
 
-- **Node.js** (for frontend development)
+- **React.js** (for frontend development)
 - **Java 8+** (for backend development)
 - **Maven** (for building and managing Spring Boot projects)
 - **MySQL** (for the database)
